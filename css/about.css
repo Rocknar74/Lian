@@ -1,0 +1,213 @@
+
+.header-rightContent li:nth-child(2) {
+    color: #000000;
+}
+
+
+/* MAIN ============================================================*/
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    background-color: #fafafa;
+}
+.container-mainAbout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+
+/* HEADING BLOCK ABOUT ===================================================*/
+.headingBlock {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.headingBlock img {
+    width: 100%;
+}
+.heading-text {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    max-width: 1145px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+.heading-text h1 {
+    font-family: 'Roboto Light', sans-serif;
+    font-weight: 400;
+    background-color: #000000;
+    font-size: 2.4rem;
+    color: #ffffff;
+    padding: 0 1.5rem;
+    letter-spacing: 0.25rem;
+    text-transform: uppercase;
+}
+.heading-text h3 {
+    font-family: 'Roboto Light', sans-serif;
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: #000000;
+    margin-top: 1.75rem;
+    letter-spacing: 0.35rem;
+    text-transform: uppercase;
+}
+
+
+/* SKILLS BLOCK ABOUT ==========================================================*/
+.skillsBlock {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1145px;
+    margin: 0 auto;
+    margin: 3.5rem 0 5rem 0;
+    padding: 0 1rem;
+}
+.skills-img {
+    /* margin-right: 1rem; */
+    /* width: 100vw; */
+    max-width: 50%;
+    flex: 2;
+}
+.skills-img img {
+    padding-right: 1rem;
+}
+.skills-textBlock {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    /* padding: 0.5rem 0; */
+}
+.skills-textBlock h5 {
+    font-family: 'Roboto Light', sans-serif;
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: #000000;
+    letter-spacing: 0.7rem;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+.skills-textBlock p {
+    font-family: 'Roboto Regular', sans-serif;
+    font-size: 0.7rem;
+    color: #777777;
+    margin-bottom: 2rem;
+    line-height: 1.7rem;
+}
+.tableSkills img {
+    margin-top: 1rem;
+}
+
+
+/* TEAM BLOCK ===============================================*/
+.teamBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1145px;
+    margin: 0 auto;
+    margin-bottom: 3.75rem;
+    padding: 0 1rem;
+}
+.team-textBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 31.5rem;
+}
+.team-textBox h2 {
+    font-family: 'Roboto Light', sans-serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: #000000;
+    letter-spacing: 0.6rem;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+.team-textBox p {
+    font-family: 'Roboto Regular', sans-serif;
+    font-size: 0.7rem;
+    color: #777777;
+    margin-bottom: 2rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.03rem;
+    text-align: center;
+}
+.team-personal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+.team-personal figure {
+    background-color: #ffffff;
+}
+.team-personal figcaption {
+    padding: 1.5rem;
+    max-width: 17.9rem;
+}
+.personal_2 {
+    margin: 0 0.5rem;
+}
+.team-personal h3 {
+    font-family: 'Roboto Light', sans-serif;
+    font-weight: 500;
+    font-size: 1.20rem;
+    color: #000000;
+    text-transform: uppercase;
+}
+.team-personal span {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 0.8rem;
+    color: #777777;
+    /* letter-spacing: 0.6rem; */
+}
+.team-personal p {
+    font-family: 'Roboto Regular', sans-serif;
+    font-size: 0.7rem;
+    color: #9c9c9c;
+    line-height: 1rem;
+    letter-spacing: 0.03rem;
+    margin-top: 1rem;
+    line-height: 1.3rem;
+}
+
+@media (max-width: 1100px) {
+    /* .skillsBlock > img {
+        margin-right: 0;
+    } */
+    /* .skillsBlock {
+        flex-direction: column;
+    } */
+}
+@media (max-width: 600px) {
+    /* .skillsBlock > img {
+        margin-right: 0;
+    } */
+    /* .skillsBlock {
+        flex-direction: column;
+    } */
+    .skillsBlock {
+        flex-direction: column;
+        width: 100%;
+    }
+    .skills-img img {
+        width: 100%;
+    }
+}
