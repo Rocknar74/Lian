@@ -181,7 +181,7 @@ ul, ol {
 }
 .header-searchResult {
     position: absolute;
-    top: 100%;
+    top: 60%;
     right: 0;
     z-index: -2;
 
@@ -192,15 +192,26 @@ ul, ol {
     width: max-content;
     min-width: 100%;
 }
-.header-searchResult ul {
+.search_menuResult {
     padding-top: .5rem;
     text-align: right;
 }
-.header-searchResult li {
+.search_menuResult li:first-child {
+    border-radius: 5px 5px 0 0;
+}
+.search_menuResult li:last-child {
+    border-radius: 0 0 5px 5px;
+}
+.search_menuResult li a {
+    display: flex;
+    justify-content: flex-end;
     align-items: center;
-    vertical-align: middle;
-    vertical-align: -webkit-baseline-middle;
+    height: 1.5rem;
+    width: 100%;
     padding: .17rem .35rem .17rem .35rem;
+}
+.search_menuResult li a:focus {
+    background-color: rgb(228, 228, 228);
 }
 .header-searchResult li:hover {
     background-color: rgb(228, 228, 228);

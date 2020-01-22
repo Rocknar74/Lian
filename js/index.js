@@ -88,20 +88,22 @@ function PREaddNewImg() { //замыкание
         for (; i <= totalImg; i++) {
             if (i <= totalImgMax) { //проверка на макусимально допустимое число изображений
                 if (i == totalImg || i == totalImgMax) {
-                    // minHeight = COLUMNS[0].offsetHeight;
-                    // COLUMNS.forEach((item, index) => {
-                    //     if (item.offsetHeight < minHeight) {
-                    //         console.log(item.offsetHeight);
-                    //         minHeight = item.offsetHeight;
-                    //         count = index;
-                    //     };
-                    // });
+                    // if (document.readyState == 'loading') {
+                    //     document.addEventListener('readystatechange', addLastImg(i, count));
+                    // } else {
+                    //     addLastImg(i, count);
+                    // };
                     
-                    addLastImg(i, count)
-                    i++;
-                    break;
+                    let k = 0; //колличество загруженных столбцов
+                    IMG.forEach(item => {
+                        item.addEventListener('readystatechange', console.log("load")
+                        );
+                    });
+                    addLastImg(i, count);
+                    continue;
                 };
                 IMG_BOX.children[count].innerHTML += `<div class="containerImg"><a href="portfolio-details.html"><img class="img picture${i}" src="img/main/home/imgBox/img${i}.jpg" alt=""><a></div>`;
+                IMG = document.querySelectorAll('.img');
             } else {
                 break;
             };
@@ -127,18 +129,20 @@ function PREaddNewImg() { //замыкание
 var addLastImg = function(i, count) {
     setTimeout(() => {
     let minHeight = COLUMNS[0].offsetHeight;
-
     COLUMNS.forEach((item, index) => {
+        console.log(item.offsetHeight);
         if (item.offsetHeight < minHeight) {
             minHeight = item.offsetHeight;
             count = index;
+            
         };
     });
     console.log(22);
     
     IMG_BOX.children[count].innerHTML += `<div class="containerImg"><a href="portfolio-details.html"><img class="img picture${i}" src="img/main/home/imgBox/img${i}.jpg" alt=""><a></div>`;
-    }, 300);
-}
+    }, 1);
+    IMG = document.querySelectorAll('.img');
+};
 
 var addNewImg = PREaddNewImg(); //вызов замыканя
 window.onload = addNewImg(10); //вызов функции при закрузке страницы

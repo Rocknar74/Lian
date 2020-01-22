@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="css/portfolio-details.css">
     <link rel="stylesheet" href="css/font-awesome.css">
     <title>Lian</title>
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 </head>
 <body>
 <header class="header">
 <div class="container-header">
     <div class="header-leftContent mainLogo"><a href=""><img src="img/header/logo.png" alt=""></a></div>
     <nav class="header-rightContent">
-        <ul>
+        <ul class="header_nav">
             <li><a href="index.html">HOME</a></li>
             <li><a href="about.html">ABOUT</a></li>
             <li><a href="portfolio.html">PORTFOLIO</a></li>
@@ -23,9 +24,12 @@
         </ul>
         <form class="form-headerSearch" action="" method="POST">
             <label for="headerSearch" id="headerLoop"></label>
-            <input type="search" name="" id="headerSearch">
+            <input type="search" name="" id="headerSearch" autocomplete="off">
+            <div class="header-searchResult">
+                <ul class="search_menuResult">
+                </ul>
+            </div>
         </form>
-        <!-- <div class="header-search"><img src="img/header/search-solid.svg" alt="" ><input type="text" name="" id=""></div> -->
     </nav>
 </div>
 </header>
