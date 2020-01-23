@@ -27,6 +27,7 @@ SEARCH.addEventListener('blur', () => {
 });
 
 const CONTAINER_RESULT = document.querySelector('.search_menuResult');
+const CONTAINER_RESULT_ACTIVE = 'search_menuResult-active';
 // var RESULT_ELEM = document.querySelectorAll('.search_menuResult li');
 var RESULT_ELEM = document.getElementsByClassName('resultSearch');
 
@@ -63,23 +64,34 @@ var searchARR = [
     },
     SINGLE_POST = { 
         id: 'singlePostSearch',
-        name: 'SINGLE-POST',
+        name: 'SINGLE&nbsp;POST',
         href: 'singlePost.html',
     },
-]
+];
+
+                    
+
+let show = function() { 
+    if (CONTAINER_RESULT.innerHTML == '') {
+        // CONTAINER_RESULT.style = "opacity: 0";
+        CONTAINER_RESULT.classList.remove(CONTAINER_RESULT_ACTIVE);
+    } else {
+        // CONTAINER_RESULT.style = "opacity: 1";
+        CONTAINER_RESULT.classList.add(CONTAINER_RESULT_ACTIVE);
+    };
+};
+
+let markString = function(item, text) { //функция маркерует совпадения имени эелемента и вводмого текста
+    return item.name.slice(0, item.name.search(text))
+    + '<mark>' +
+    item.name.slice(item.name.search(text), item.name.search(text) + text.length)
+    + '</mark>' +
+    item.name.slice(item.name.search(text) + text.length);
+};
 
 SEARCH.oninput = function() {
-    let text = this.value.trimLeft().toUpperCase();
+    let text = this.value.trim().toUpperCase();
     let check = false;
-    let modifString = function(item, text) {
-        console.log(item.name.length);
-        
-        return item.name.slice(0, item.name.search(text))
-        + '<mark>' +
-        item.name.slice(item.name.search(text), item.name.search(text) + text.length)
-        + '</mark>' +
-        item.name.slice(item.name.search(text) + text.length);
-    };
     if (text != '') {   //Если строка ввода не пустая то...
         searchARR.forEach(item => {
             if (item.name.search(text) != -1) { //Если вписываемая строк совпадает с подстрокой какого-либо элемента из массива searchARR, то...
@@ -87,12 +99,11 @@ SEARCH.oninput = function() {
                     return elem.id == item.id;
                 });
                 if (!check) { //Если проверка на совпадения неудачна, то добавляем новый элемент в контейнер
-                    CONTAINER_RESULT.innerHTML += `<li class="resultSearch" id="${item.id}"><a href="${item.href}">${modifString(item, text)}</a></li>`;
+                    CONTAINER_RESULT.innerHTML += `<li class="resultSearch" id="${item.id}"><a href="${item.href}">${markString(item, text)}</a></li>`;
                 } else {
-                    
                     Array.from(RESULT_ELEM).forEach(elem => {
                         if (elem.id == item.id) {
-                            elem.firstChild.innerHTML = modifString(item, text);
+                            elem.firstChild.innerHTML = markString(item, text); //вызов функции маркеровки
                             return;
                         };
                     });
@@ -109,4 +120,5 @@ SEARCH.oninput = function() {
     } else { //Если строка ввода пустая то отчищаем контейнер от элементов
         CONTAINER_RESULT.innerHTML = '';
     };
+    show();
 };

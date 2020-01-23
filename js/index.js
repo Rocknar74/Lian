@@ -94,7 +94,6 @@ function PREaddNewImg() { //замыкание
                     //     addLastImg(i, count);
                     // };
                     
-                    let k = 0; //колличество загруженных столбцов
                     IMG.forEach(item => {
                         item.addEventListener('readystatechange', console.log("load")
                         );

@@ -16,14 +16,17 @@ function PREaddNewImg() { //замыкание
         for (; i <= totalImg; i++) {
             if (i <= totalImgMax) { //проверка на макусимально допустимое число изображений
                 if (i == totalImg || i == totalImgMax) {
-                    let k = 0; //колличество загруженных столбцов
-
+                    // if (document.readyState == 'loading') {
+                    //     document.addEventListener('readystatechange', addLastImg(i, count));
+                    // } else {
+                    //     addLastImg(i, count);
+                    // };
+                    
                     IMG.forEach(item => {
                         item.addEventListener('readystatechange', console.log("load")
                         );
                     });
                     addLastImg(i, count);
-                    
                     continue;
                 };
                 IMG_BOX.children[count].innerHTML += `<div class="containerImg"><a href="portfolio-details.html"><img class="img picture${i}" src="img/main/home/imgBox/img${i}.jpg" alt=""><a></div>`;
@@ -39,13 +42,20 @@ function PREaddNewImg() { //замыкание
                     count++
                     break;
             };
+        
+            // img = document.querySelectorAll('.img');
+            // img.forEach(item => {
+            //     item.addEventListener('click', () => {
+            //         location.href = `portfolio-details.html`;
+            //     });
+            // });
         };
     };
 };
 
 var addLastImg = function(i, count) {
+    setTimeout(() => {
     let minHeight = COLUMNS[0].offsetHeight;
-
     COLUMNS.forEach((item, index) => {
         console.log(item.offsetHeight);
         if (item.offsetHeight < minHeight) {
@@ -54,9 +64,10 @@ var addLastImg = function(i, count) {
             
         };
     });
+    console.log(22);
     
     IMG_BOX.children[count].innerHTML += `<div class="containerImg"><a href="portfolio-details.html"><img class="img picture${i}" src="img/main/home/imgBox/img${i}.jpg" alt=""><a></div>`;
-
+    }, 1);
     IMG = document.querySelectorAll('.img');
 };
 
