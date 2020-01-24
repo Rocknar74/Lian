@@ -168,16 +168,17 @@ ul, ol {
     border: 1px solid #000000;
     border-radius: 13px 13px 0 13px;
 }
-.form-headerSearch input {
-    border-radius: 13px;
-    width: 100%;
-    height: 100%;
-}
 .form-headerSearch label {
     font-family: 'FontAwesome';
     color: #777777;
     font-size: .7rem;
     transition: 0.2s ease-in;
+}
+#headerSearch {
+    border-radius: 13px;
+    width: 100%;
+    height: 100%;
+    cursor: text;
 }
 .header-searchResult {
     position: absolute;

@@ -19,11 +19,13 @@ const LOOP = document.getElementById('headerLoop');
 
 SEARCH.addEventListener('focus', () => {
     FORM.classList.add('form-active');
-    LOOP.style = `opacity: 50%; pointer-events: none`
+    LOOP.style = `opacity: 50%; pointer-events: none`;
+    // SEARCH.style = `pointer-events: initial`;
 });
 SEARCH.addEventListener('blur', () => {
     FORM.classList.remove('form-active');
-    LOOP.style = `opacity: 1; pointer-events: initial`
+    LOOP.style = `opacity: 1; pointer-events: initial;`
+    // SEARCH.style = `pointer-events: none`;
 });
 
 const CONTAINER_RESULT = document.querySelector('.search_menuResult');
@@ -95,8 +97,6 @@ SEARCH.oninput = function() {
     if (text != '') {   //Если строка ввода не пустая то...
         searchARR.forEach(item => {
             if (item.name.search(text) != -1) { //Если вписываемая строк совпадает с подстрокой какого-либо элемента из массива searchARR, то...
-                console.log(item.name.search(text));
-                
                 if (!check(item)) { //Если проверка на совпадения неудачна, то добавляем новый элемент в контейнер
                     CONTAINER_RESULT.innerHTML += `<li class="resultSearch" id="${item.id}"><a href="${item.href}">${text}</a></li>`;
                 }
