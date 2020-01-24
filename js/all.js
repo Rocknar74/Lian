@@ -28,10 +28,9 @@ SEARCH.addEventListener('blur', () => {
 
 const CONTAINER_RESULT = document.querySelector('.search_menuResult');
 const CONTAINER_RESULT_ACTIVE = 'search_menuResult-active';
-// var RESULT_ELEM = document.querySelectorAll('.search_menuResult li');
-var RESULT_ELEM = document.getElementsByClassName('resultSearch');
+const RESULT_ELEM = document.getElementsByClassName('resultSearch');
 
-var searchARR = [
+var searchARR = [ // массив с возможными результатами глобального поиска
     HOME = { 
         id: 'homeSearch',
         name: 'HOME',
@@ -59,62 +58,53 @@ var searchARR = [
     },
     PORTFOLIO_DETAILS = { 
         id: 'portfolioDetailsSearch',
-        name: 'PORTFOLIO-DETAILS',
+        name: 'PORTFOLIO DETAILS',
         href: 'portfolio-details.html',
     },
     SINGLE_POST = { 
         id: 'singlePostSearch',
-        name: 'SINGLE&nbsp;POST',
+        name: 'SINGLE POST',
         href: 'singlePost.html',
     },
 ];
 
                     
-
-let show = function() { 
-    if (CONTAINER_RESULT.innerHTML == '') {
-        // CONTAINER_RESULT.style = "opacity: 0";
+let show = function() {
+    if (CONTAINER_RESULT.innerHTML == '') { //если контейнер с элементами пуст - скрыть его
         CONTAINER_RESULT.classList.remove(CONTAINER_RESULT_ACTIVE);
-    } else {
-        // CONTAINER_RESULT.style = "opacity: 1";
+    } else { //если в контейнер есть элементы - показать его
         CONTAINER_RESULT.classList.add(CONTAINER_RESULT_ACTIVE);
     };
 };
 
 let markString = function(item, text) { //функция маркерует совпадения имени эелемента и вводмого текста
-    return item.name.slice(0, item.name.search(text))
+    let textStart = item.name.search(text); //позиция старта маркировки
+    return item.name.slice(0, textStart)
     + '<mark>' +
-    item.name.slice(item.name.search(text), item.name.search(text) + text.length)
+    item.name.slice(textStart, textStart + text.length)
     + '</mark>' +
-    item.name.slice(item.name.search(text) + text.length);
+    item.name.slice(textStart + text.length);
 };
-
+let check = function(item) {
+    return Array.from(RESULT_ELEM).some(elem => { //проверка на совпадения
+        return elem.id == item.id;
+    });
+};
 SEARCH.oninput = function() {
     let text = this.value.trim().toUpperCase();
-    let check = false;
     if (text != '') {   //Если строка ввода не пустая то...
         searchARR.forEach(item => {
             if (item.name.search(text) != -1) { //Если вписываемая строк совпадает с подстрокой какого-либо элемента из массива searchARR, то...
-                check = Array.from(RESULT_ELEM).some(elem => { //проверка на совпадения
-                    return elem.id == item.id;
-                });
-                if (!check) { //Если проверка на совпадения неудачна, то добавляем новый элемент в контейнер
-                    CONTAINER_RESULT.innerHTML += `<li class="resultSearch" id="${item.id}"><a href="${item.href}">${markString(item, text)}</a></li>`;
-                } else {
-                    Array.from(RESULT_ELEM).forEach(elem => {
-                        if (elem.id == item.id) {
-                            elem.firstChild.innerHTML = markString(item, text); //вызов функции маркеровки
-                            return;
-                        };
-                    });
-                };
+                console.log(item.name.search(text));
+                
+                if (!check(item)) { //Если проверка на совпадения неудачна, то добавляем новый элемент в контейнер
+                    CONTAINER_RESULT.innerHTML += `<li class="resultSearch" id="${item.id}"><a href="${item.href}">${text}</a></li>`;
+                }
+                RESULT_ELEM[item.id].firstChild.innerHTML = markString(item, text); // Маркерум текст
             } else {
-                Array.from(RESULT_ELEM).forEach(elem => { //если элемент уже не подходит - удаляем его из контейнера с элементами
-                    if (elem.id == item.id) {
-                        elem.remove();
-                        return;
-                    };
-                });
+                if (check(item)) { //Если элемент есть в контейнере, но больше не подходит - удаляем его из контейнера с элементами
+                    RESULT_ELEM[item.id].remove();
+                };
             };
         });
     } else { //Если строка ввода пустая то отчищаем контейнер от элементов

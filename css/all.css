@@ -192,6 +192,7 @@ ul, ol {
 .search_menuResult {
     padding-top: .5rem;
     text-align: right;
+    white-space: pre;
 
     background-color: #ffffffc9;
     color: #000000;
