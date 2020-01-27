@@ -40,27 +40,21 @@ main {
     overflow: hidden;
     /* z-index: -1; */
 }
-.slide {
+.slides {
     display: flex;
     flex-direction: row;
     width: 300%;
     float: left;
     transition: margin .5s cubic-bezier(.86, 0, .07, 1);
 }
-.slide-active-2 {
-    margin-left: -100%;
-}
-.slide-active-3 {
-    margin-left: -200%;
-}
-.slide article {
+.slides article {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 50%;
 }
-.slide article img {
+.slides article img {
     width: 100%;
 }
 .slide-text {
@@ -246,7 +240,7 @@ main {
 .col {
     height: max-content;
 }
-.col-3 {
+.col-last {
     margin-right: -1.5rem;
 }
 .containerImg {

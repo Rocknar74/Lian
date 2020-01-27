@@ -102,7 +102,7 @@ main {
 .col {
     height: max-content;
 }
-.col-3 {
+.col-last {
     margin-right: -1.5rem;
 }
 .containerImg {
