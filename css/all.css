@@ -19,15 +19,6 @@
     src: url(../fonts/Roboto-Italic.ttf);
 }
 
-/* body, div, section, article, header, main, aside, footer, nav,
-h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd, hr,
-address, pre, blockquote, figure, figcaption, details, summary, dialog,
-noscript, canvas, picture, img, iframe, embed, object, audio, video, map, area,
-table, caption, colgroup, col, thead, tbody, tfoot, tr, th, td,
-form, label, input, button, select, datalist, optgroup, option, textarea,
-output, progress, meter, fieldset, legend,
-a, em, strong, small, s, cite, q, dfn, data, time, code, var, samp, kbd,
-sub, sup, i, b, u, mark, bdi, bdo, span, del, ins  */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -195,7 +186,7 @@ ul, ol {
     text-align: right;
     white-space: pre;
 
-    background-color: #ffffffc9;
+    background-color: #ffffffe5;
     color: #000000;
     border: 1px solid #000000;
     border-style: hidden dashed dashed hidden;

@@ -14,18 +14,19 @@ window.addEventListener('scroll', () => {
 //SEARCH
 //===================================================
 const FORM = document.querySelector('.form-headerSearch');
+const FORM_ACTIVE = 'form-active';
 const SEARCH = document.getElementById('headerSearch');
 const LOOP = document.getElementById('headerLoop');
 
 SEARCH.addEventListener('focus', () => {
-    FORM.classList.add('form-active');
+    FORM.classList.add(FORM_ACTIVE);
     LOOP.style = `opacity: 50%; pointer-events: none`;
-    // SEARCH.style = `pointer-events: initial`;
+    show();
 });
 SEARCH.addEventListener('blur', () => {
-    FORM.classList.remove('form-active');
+    FORM.classList.remove(FORM_ACTIVE);
     LOOP.style = `opacity: 1; pointer-events: initial;`
-    // SEARCH.style = `pointer-events: none`;
+    show();
 });
 
 const CONTAINER_RESULT = document.querySelector('.search_menuResult');
@@ -72,7 +73,7 @@ var searchARR = [ // массив с возможными результатам
 
                     
 let show = function() {
-    if (CONTAINER_RESULT.innerHTML == '') { //если контейнер с элементами пуст - скрыть его
+    if (CONTAINER_RESULT.innerHTML == '' || !FORM.classList.contains(FORM_ACTIVE)) { //если контейнер с элементами пуст или форма не в фокусе - скрыть его
         CONTAINER_RESULT.classList.remove(CONTAINER_RESULT_ACTIVE);
     } else { //если в контейнер есть элементы - показать его
         CONTAINER_RESULT.classList.add(CONTAINER_RESULT_ACTIVE);
