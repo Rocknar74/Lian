@@ -11,12 +11,21 @@ window.addEventListener('scroll', () => {
     };
 });
 
+
 //SEARCH
 //===================================================
 const FORM = document.querySelector('.form-headerSearch');
 const FORM_ACTIVE = 'form-active';
 const SEARCH = document.getElementById('headerSearch');
 const LOOP = document.getElementById('headerLoop');
+                    
+var show = function() {
+    if (CONTAINER_RESULT.innerHTML == '' || !FORM.classList.contains(FORM_ACTIVE)) { //если контейнер с элементами пуст или форма не в фокусе - скрыть его
+        CONTAINER_RESULT.classList.remove(CONTAINER_RESULT_ACTIVE);
+    } else { //если в контейнер есть элементы - показать его
+        CONTAINER_RESULT.classList.add(CONTAINER_RESULT_ACTIVE);
+    };
+};
 
 SEARCH.addEventListener('focus', () => {
     FORM.classList.add(FORM_ACTIVE);
@@ -71,16 +80,7 @@ var searchARR = [ // массив с возможными результатам
     },
 ];
 
-                    
-let show = function() {
-    if (CONTAINER_RESULT.innerHTML == '' || !FORM.classList.contains(FORM_ACTIVE)) { //если контейнер с элементами пуст или форма не в фокусе - скрыть его
-        CONTAINER_RESULT.classList.remove(CONTAINER_RESULT_ACTIVE);
-    } else { //если в контейнер есть элементы - показать его
-        CONTAINER_RESULT.classList.add(CONTAINER_RESULT_ACTIVE);
-    };
-};
-
-let markString = function(item, text) { //функция маркерует совпадения имени эелемента и вводмого текста
+var markString = function(item, text) { //функция маркерует совпадения имени эелемента и вводмого текста
     let textStart = item.name.search(text); //позиция старта маркировки
     return item.name.slice(0, textStart)
     + '<mark>' +
@@ -88,7 +88,7 @@ let markString = function(item, text) { //функция маркерует со
     + '</mark>' +
     item.name.slice(textStart + text.length);
 };
-let check = function(item) {
+var check = function(item) {
     return Array.from(RESULT_ELEM).some(elem => { //проверка на совпадения
         return elem.id == item.id;
     });

@@ -5,21 +5,21 @@ const IMG_BOX = document.querySelector(".imgBox");//контейнер коло�
 const COLUMNS =  document.getElementsByClassName("col");//объект с колонками
 const IMG = document.getElementsByClassName('img');//объект с изображениями
 
-var add_last_img = function(i, columns) { // функция добавляет последнее изображение
+var add_last_img = function(count, column) { // функция добавляет последнее изображение
     setTimeout(() => {
         let minHeight = COLUMNS[0].offsetHeight;
         Array.from(COLUMNS).forEach((item, index) => {
             if (item.offsetHeight < minHeight) {
                 minHeight = item.offsetHeight;
-                columns = index;
+                column = index;
             };
         });
-        add_new_imgs(i, columns);
-    }, 0);
+        add_new_imgs(count, column);
+    }, 1);
 };
 
-var add_new_imgs = function(i, columns) { //функция добавляет все изображения кроме последнего
-    COLUMNS[columns].innerHTML += `<div class="containerImg"><a href="portfolio-details.html"><img class="img" src="img/main/home/imgBox/img${i}.jpg" alt=""><a></div>`;
+var add_new_imgs = function(count, column) { //функция добавляет все изображения кроме последнего
+    COLUMNS[column].innerHTML += `<div class="containerImg"><a href="portfolio-details.html"><img class="img" src="img/main/home/imgBox/img${count}.jpg" alt=""><a></div>`;
 };
 
 var create_columns = function(totalColumns) { //создаёт необходимое количиство столбцов
@@ -32,34 +32,36 @@ var create_columns = function(totalColumns) { //создаёт необходи�
 };
 
 function PRE_logic_distribution_img(totalColumns) { //замыкание
-    var totalImgMax = 15; //максимально допустимое количество картинок
-    var totalImg = 0; //текущее количество картинок
-    var i = 1; //простой итератор
-    let columns = 0; //индекс столбца
+    var totalImgsMax = 15; //максимально допустимое количество картинок
+    var totalImgs = 0; //текущее количество картинок
+    var count = 1; //простой итератор
+    let column = 0; //индекс столбца
     totalColumns--;
     create_columns(totalColumns);
 
-    return function(n) { //n - число картинок которое загружается при каждом вызове функции
-        totalImg += n;
-        for (; i <= totalImg; i++) {
-            if (i <= totalImgMax) { //проверка на макусимально допустимое число изображений
-                if (i == totalImg || i == totalImgMax) {
-                    add_last_img(i, columns);
-                    i++;
+    return function(imgs_per_load) {
+        totalImgs += imgs_per_load;
+        for (; count <= totalImgs; count++) {
+            if (count <= totalImgsMax) { //проверка на макусимально допустимое число изображений
+                if (count == totalImgs || count == totalImgsMax) {
+                    add_last_img(count, column);
+                    count++;
                     break;
                 };
-                add_new_imgs(i, columns);
+                add_new_imgs(count, column);
             }
-            if (columns == totalColumns) columns = 0 //ограничитель столбцов
-            else columns++;
+            if (column == totalColumns) column = 0 //ограничитель столбцов
+            else column++;
         };
     };
 };
 
-var logic_distribution_img = PRE_logic_distribution_img(3); //вызов замыканя (3 - количество столбцов)
-window.onload = logic_distribution_img(10); //вызов функции при закрузке страницы (10 - количество загружаемых изображений)
+var totalColumns = 3; //количество столбцов
+var imgs_per_load = 10; //количество загружаемых изображений за раз
+
+var logic_distribution_img = PRE_logic_distribution_img(totalColumns); //вызов замыканя
+window.onload = logic_distribution_img(imgs_per_load); //вызов функции при закрузке страницы
 
 MORE_BUTTON.addEventListener('click', () => { //вызов функции при клике по кнопке
-    logic_distribution_img(10);
+    logic_distribution_img(imgs_per_load);
 });
-
